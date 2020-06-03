@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './component/home';
 import Register from './component/regis'
+import Login from './component/login'
+import User from './component/user'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -9,6 +11,8 @@ function App() {
     <Router>
     <Route exact path='/' component={Home} />
     <Route exact path='/Register' component={Register} />
+    <Route exact path='/Login' component={Login} />
+    <Route exact path='/User' component={User} />
   </Router>
   );
 }
