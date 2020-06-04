@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import firebase,{auth} from '../firebase'
+import firebase, { auth, db } from '../firebase'
 import { useHistory } from "react-router-dom";
 import '../App.css'
 
@@ -23,7 +23,27 @@ const Login = () => {
             const { user } = respone
             console.log(respone)
             localStorage.setItem("user_token", user.uid);
-            history.push("/user");
+
+            let cityRef = db.collection('users').doc(user.uid);
+            let getDoc = cityRef.get()
+                .then(doc => {
+                    if (!doc.exists) {
+                        console.log('No such document!');
+                    } else {
+                        // console.log('Document data:', doc.data());
+                        if (doc.data().role === "5") {
+                            history.push('/HomeAdmin')
+                        }
+                        else {
+                            history.push('/user')
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error getting document', err);
+                });
+
+            // history.push("/user");
         }
 
     }

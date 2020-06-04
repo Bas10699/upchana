@@ -7,8 +7,6 @@ const User = () => {
     const [name, setname] = useState('');
     const user_token = localStorage.getItem('user_token');
 
-
-
     let history = useHistory();
     const handlelogout = () => {
         auth.signOut().then(() => {
