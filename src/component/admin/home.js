@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
-import Header from '../header'
+import { useHistory , Link } from "react-router-dom";
+
 
 const HomeAdmin = () => {
     let history = useHistory();
     return (
         <div>
-            <Header />
-            <div className="container" style={{marginTop:"10vh", minHeight: "90vh"}}>
-               
-                     สวัสดี Admin
-               
-               
+            
+            <div className="container" style={{ minHeight: "75vh" }}>
+
+                สวัสดี Admin
+                     <nav>
+                    <Link to="Admin/me">My Profile</Link>
+                </nav>
+
             </div>
 
         </div>

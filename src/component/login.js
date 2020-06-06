@@ -32,7 +32,7 @@ const Login = () => {
                     } else {
                         // console.log('Document data:', doc.data());
                         if (doc.data().role === "5") {
-                            history.push('/HomeAdmin')
+                            history.push('/Admin')
                         }
                         else {
                             history.push('/user')
