@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, NavLink, useRouteMatch,useHistory } from 'react-router-dom';
+import Firebase, { auth } from '../../firebase'
 import Home from './home'
 import OwnUserProfile from './test'
 import Sidebar from './sidebar'
@@ -9,8 +10,16 @@ import DisplayAdmin from './displayAdmin'
 
 const Admin = () => {
     let match = useRouteMatch();
-
+    let history = useHistory();
     const [toggleActive, setToggleActive] = useState(false)
+
+    const handlelogout = () => {
+        auth.signOut().then(() => {
+            console.log("logout success")
+            localStorage.removeItem('user_token')
+            history.push("/");
+        })
+    }
 
     return (
         <div className="wrapper">
@@ -34,11 +43,9 @@ const Admin = () => {
                 </ul>
                 <ul className="list-unstyled CTAs">
                     <li>
-                        <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" className="download">Download source</a>
+                        <a className="download" onClick={handlelogout}>ออกจากระบบ</a>
                     </li>
-                    <li>
-                        <a href="https://bootstrapious.com/p/bootstrap-sidebar" className="article">Back to article</a>
-                    </li>
+                    
                 </ul>
             </nav>
             <div id="content">
